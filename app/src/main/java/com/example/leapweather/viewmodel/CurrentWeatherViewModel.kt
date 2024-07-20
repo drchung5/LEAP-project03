@@ -24,7 +24,6 @@ class CurrentWeatherViewModel : ViewModel() {
         Log.wtf("CurrentWeatherViewModel", """getCurrentWeather(${zipcode})""" )
 
         var zipInfo :ZipInfo? = ZipInfo.empty()
-        var currentWeatherInfo :CurrentWeatherInfo
 
         viewModelScope.launch{
 
@@ -62,7 +61,7 @@ class CurrentWeatherViewModel : ViewModel() {
                     longitude = zipInfo?.longitude ?: 0.0,
                 )
 
-                Log.wtf("CurrentWeatherViewModel", weatherResponse!!.current.toString() )
+                Log.wtf("CurrentWeatherViewModel", weatherResponse.current.toString() )
 
             } catch (e : Exception) {
                 Log.wtf("CurrentWeatherViewModel", e.message )
