@@ -17,10 +17,9 @@ class CurrentWeatherViewModel : ViewModel() {
     private val _currentWeatherInfo = MutableLiveData<CurrentWeatherInfo?>()
     val currentWeatherInfo get() = _currentWeatherInfo
 
-    fun getCurrentWeather(zipcode :String){
+    var zipInfoCache :MutableMap<String,ZipInfo?> = mutableMapOf()
 
-        var zipInfoCache :MutableMap<String,ZipInfo?> = mutableMapOf()
-        var weatherResponse :WeatherResponse? = null
+    fun getCurrentWeather(zipcode :String){
 
         Log.wtf("CurrentWeatherViewModel", """getCurrentWeather(${zipcode})""" )
 
@@ -53,6 +52,8 @@ class CurrentWeatherViewModel : ViewModel() {
             }
 
             val currentWeatherService = CurrentWeatherService.getInstance()
+
+            var weatherResponse :WeatherResponse? = null
 
             try{
 
